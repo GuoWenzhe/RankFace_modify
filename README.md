@@ -1,5 +1,12 @@
-# RankFace_modify
-this project was modify by this version: https://github.com/Entropy-xcy/RankFace
+# Rank Face
+A deep learning based model to judge the AQ, Appearance Quotient, of faces. (For Chinese Young Girls Only)</br>
+Inspired by [Face Rank](https://github.com/Entropy-xcy/FaceRank)
+
+## Inspiration
+#### [Face Rank](https://github.com/Entropy-xcy/FaceRank)
+My Repository is just a reversion of [Face Rank](https://github.com/Entropy-xcy/FaceRank). For more details check this fantastic repo.
+#### [SCUT-FBP](http://www.hcii-lab.net/data/SCUT-FBP/EN/introduce.html)
+This [Essay](http://www.hcii-lab.net/lianwen/Papers/[SMC%202015]SCUT-FBP-A%20Benchmark%20Dataset%20for%20Facial%20Beauty%20Perception.pdf) along with its dataset gave me great help in modeling and handling training issues.
 
 ## Installation
 
@@ -9,30 +16,71 @@ git clone https://github.com/Entropy-xcy/RankFace
 cd ./RankFace
 pip install -r requirements.txt
 apt-get install python-opencv
+# for macOS use 'brew install opencv'
+# for Windows try the installation tutorial from opencv official website
+wget http://entropy-xcy.bid/faceRank.h5
 ```
 
-the requirement are as follows:
+## Demo
 
-```shell
-keras
-cv2/PIL(I use PIL，因为python3没装上opencv，自己测试时间太紧，要是有opencv就不用将face_detection单独拆分出来记录到list.txt中了……）
-numpy 
-sklearn
+```
+python main.py girls.jpg
+```
+Here is the output
+![](demo.jpg)
+
+## Training
+It is highly recommended to train the model yourself. Some accuracy issues may happen if the platform you have is different from the trainer's.
+```
+rm ./faceRank.h5
+wget http://entropy-xcy.bid/dataset.zip
+unzip dataset.zip
+rm dataset.zip
+# You may change parameters in the script.
+python train.py
 ```
 
-label.csv 手动给每一张图片打分
-#training steps:
-
-```shell
-python resize_image.py ./data/train_data/ ./data/train_face/       #将train_data进行缩放，
-python face_detection_cv.py ./data/train_face/ list1.txt           #将train_face中的脸部定位进行记录，输出到文件保存
-/home/hmx/neural-enhance-master/python-3.4/bin/python3 ./train2.py ./data/train_face/ ./list1.txt    #使用keras对模型进行训练
+## Launch API Server
+A basic webpage or POST API server build with keras
+It may still work for mobile platforms
+![](webpage.jpg)
+```
+pip install werkzeug
+pip install flask
+# make sure that you already successfully launched the demo before the next step
+# The default port is 5000, you may change it as you wish in the code
+python API_server.py
 ```
 
-#testing steps:
-
-```shell
-python resize_image.py ./data/test_data/ ./data/test_face/
-python face_detection_cv.py ./data/test_face/ ./list1.txt
-/home/hmx/neural-enhance-master/python-3.4/bin/python3 test2.py ./data/train_face/ ./list1.txt  #load_model，并进行输出
+## Model Summary:
+```
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 128, 128, 32)      896       
+_________________________________________________________________
+activation_1 (Activation)    (None, 128, 128, 32)      0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 126, 126, 32)      9248      
+_________________________________________________________________
+activation_2 (Activation)    (None, 126, 126, 32)      0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 63, 63, 32)        0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 63, 63, 32)        0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 127008)            0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               16257152  
+_________________________________________________________________
+activation_3 (Activation)    (None, 128)               0         
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 128)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 129       
+=================================================================
+Total params: 16,267,425
+Trainable params: 16,267,425
+Non-trainable params: 0
+_________________________________________________________________
 ```
