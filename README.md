@@ -1,14 +1,18 @@
 # RankFace_modify
 this project was modify by this version: https://github.com/Entropy-xcy/RankFace
 
-###Installation
-'''
+## Installation
+
+```shell
 apt-get install python-dev python-pip -y
 git clone https://github.com/Entropy-xcy/RankFace
 cd ./RankFace
 pip install -r requirements.txt
 apt-get install python-opencv
-'''
+# for macOS use 'brew install opencv'
+# for Windows try the installation tutorial from opencv official website
+wget http://entropy-xcy.bid/faceRank.h5
+```
 
 the requirement are as follows:
 '''
