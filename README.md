@@ -27,6 +27,8 @@ label.csv 手动给每一张图片打分
 python resize_image.py ./data/train_data/ ./data/train_face/       #将train_data进行缩放，
 python face_detection_cv.py ./data/train_face/ list1.txt           #将train_face中的脸部定位进行记录，输出到文件保存
 /home/hmx/neural-enhance-master/python-3.4/bin/python3 ./train2.py ./data/train_face/ ./list1.txt    #使用keras对模型进行训练
+因为只是测试一下这个project是否好用，so没有新增图片。
+如果需要新增图片，则也需要在label.csv中增加该图片的分类信息，并重新使用train进行训练。
 ```
 
 #testing steps:
