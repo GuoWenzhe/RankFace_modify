@@ -25,3 +25,4 @@ python face_detection_cv.py ./data/train_face/ list1.txt           #将trai
 python resize_image.py ./data/test_data/ ./data/test_face/
 python face_detection_cv.py ./data/test_face/ ./list1.txt
 /home/hmx/neural-enhance-master/python-3.4/bin/python3 test2.py ./data/train_face/ ./list1.txt  #load_model，并进行输出
+
