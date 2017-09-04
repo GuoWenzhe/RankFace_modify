@@ -1,5 +1,5 @@
 # RankFace_modify
-this project was modify by this version: https://github.com/Entropy-xcy/RankFace
+this project was modify from this project: https://github.com/Entropy-xcy/RankFace
 
 ## Installation
 
