@@ -15,7 +15,7 @@ the requirement are as follows:
 
 ```shell
 keras
-cv2/PIL(I use PIL，因为python3没装上opencv，自己测试时间太紧，要是有opencv就不用将face_detection单独拆分出来记录到list.txt中了……）
+cv2/PIL(I use PIL，都是泪，因为python3没装上opencv，自己测试时间太紧，要是有opencv就不用将face_detection单独拆分出来记录到list.txt中了……）
 numpy 
 sklearn
 ```
