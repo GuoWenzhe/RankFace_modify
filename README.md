@@ -1,7 +1,7 @@
 # RankFace_modify
 this project was modify by this version: https://github.com/Entropy-xcy/RankFace
 
-#Installation
+###Installation
 '''
 apt-get install python-dev python-pip -y
 git clone https://github.com/Entropy-xcy/RankFace
